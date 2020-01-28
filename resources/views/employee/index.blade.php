@@ -29,7 +29,7 @@
             <td>{{ $employee->lastname }}</td>
             <td>
               @foreach ($employee -> tasks as $task)
-                  <span>{{ $task->title }} - </span>
+                  <span><a class="emp-task-del" href="{{ route('employee.task.remove', [$employee->id, $task->id]) }}">X</a>{{ $task->title }} - </span>
               @endforeach
             </td>
             <td>
