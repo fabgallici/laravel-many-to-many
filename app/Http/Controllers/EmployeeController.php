@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Employee;
-use App\Tag;
+use App\Task;
 
 class EmployeeController extends Controller
 {
@@ -27,7 +27,8 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        //
+        $tasks = Task::all();
+        return view('employee.create', compact('tasks'));
     }
 
     /**
@@ -38,7 +39,11 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request -> all();
+        $employee = Employee::create($data);
+        $tasks = Task::find($data['tasks']);
+        $employee -> tasks() ->attach ($tasks);
+        return redirect() -> route('employee.index');
     }
 
     /**
