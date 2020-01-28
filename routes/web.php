@@ -12,5 +12,8 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('employee.index');
 });
+
+Route::get('/employee', 'EmployeeController@index') ->name('employee.index');
+Route::get('/employee.create', 'EmployeeController@create') ->name('employee.create');
