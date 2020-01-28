@@ -79,7 +79,13 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request -> all();
+        $employee = Employee::findOrFail($id);
+        $employee -> update($data);
+        $tasks = Task::find($data['tasks']);
+        $employee -> tasks() -> sync($tasks);
+
+        return redirect() -> route('employee.index');
     }
 
     /**
