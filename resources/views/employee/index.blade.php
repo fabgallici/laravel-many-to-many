@@ -32,6 +32,9 @@
                   <span>{{ $task->title }} - </span>
               @endforeach
             </td>
+            <td>
+                <a class="btn btn-success" href="{{ route('employee.edit', $employee->id) }}">EDIT</a>
+            </td>
           </tr>      
         @endforeach
       </tbody>

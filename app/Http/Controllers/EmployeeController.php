@@ -65,7 +65,9 @@ class EmployeeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $employee = Employee::findOrFail($id);
+        $tasks = Task::all();
+        return view('employee.edit', compact('employee', 'tasks'));
     }
 
     /**
