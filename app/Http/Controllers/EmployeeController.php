@@ -39,7 +39,7 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request -> all();
+        $data = $request -> all();  //bypass validazione
         $employee = Employee::create($data);
         $tasks = Task::find($data['tasks']);
         $employee -> tasks() ->attach ($tasks);
@@ -96,6 +96,10 @@ class EmployeeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $employee = Employee::findOrFail($id);
+        $employee -> tasks() -> detach();
+        // $employee -> tasks() -> sync([]);    //variante, disaccoppiali tutti
+        $employee -> delete();
+        return redirect(route('employee.index'));
     }
 }

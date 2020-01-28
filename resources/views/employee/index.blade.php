@@ -35,6 +35,9 @@
             <td>
                 <a class="btn btn-success" href="{{ route('employee.edit', $employee->id) }}">EDIT</a>
             </td>
+            <td>
+                <a class="btn btn-danger" href="{{ route('employee.destroy', $employee->id) }}">DELETE</a>
+            </td>
           </tr>      
         @endforeach
       </tbody>
