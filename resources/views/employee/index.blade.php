@@ -10,7 +10,7 @@
       <a class="btn-primary btn right create" href="{{ route('employee.create') }}">Aggiungi Nuovo</a>
   </div>
   <div class="col-12">
-    <div class="table">
+    <table class="table">
       <thead>
         <tr>
           <th>ID</th>
@@ -27,11 +27,16 @@
             <td>{{ $employee->id }}</td>
             <td>{{ $employee->firstname }}</td>
             <td>{{ $employee->lastname }}</td>
+            <td>
+              @foreach ($employee -> tasks as $task)
+                  <span>{{ $task->title }} - </span>
+              @endforeach
+            </td>
           </tr>      
         @endforeach
       </tbody>
 
-    </div>
+    </table>
   </div>
 
 </div>
